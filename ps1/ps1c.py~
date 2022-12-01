@@ -1,0 +1,57 @@
+'''
+ In Part A, we are going to determine how long it will take you to save enough
+money to make the down payment given the following assumptions:
+'''
+
+annual_salary = float(input("starting annual salary: ")) 
+#portion_saved = float(input("\nportion of salary to be saved as a decimal: ")) #this is what we are trying to find out
+total_cost = 1000000
+semi_annual_raise = .07
+portion_down_payment = .25
+current_savings = float(0)
+r = 0.04
+#number_months = 0
+
+target_months = 36
+number_guesses = 0
+epsilon = 100
+low = 0
+high = 10000
+#guess_int = int((low + high) / 2)
+#portion_saved  = guess_int / 10000.0
+#need 2 loops, try a value with binary search, reset if wrong
+
+#try 100% save to see if it is possible
+
+while number_months <= target_months:
+    number_months = 0
+    current_savings = float(0)
+    guess_int  = int((low + high) / 2)
+    portion_saved = guess_int / 10000.0
+    print(portion_saved)
+    while abs(current_savings - total_cost * portion_down_payment) >= epsilon:
+        current_savings = current_savings + (annual_salary * portion_saved / 12) + (current_savings * r / 12)
+        if number_months % 6 == 0:
+            annual_salary *= (1 + semi_annual_raise)
+        if (portion_saved >= 1): #need to review condition.. maybe max number of guesses? have 100 saved?
+            print("not possible")
+            break
+        number_months += 1
+    number_guesses += 1
+    if (current_savings < total_cost * portion_down_payment):
+        low = guess_int
+    else:
+        high = guess_int
+
+#tenta um numero, vai subindo os meses e o dinheiro, se bater din antes dos meses abaixa, senao aumenta, increase guess number
+
+
+#    if number_months == 36: didnt work
+
+
+#while abs(current_savings - total_cost * portion_down_paymen) >= epsilon:
+
+
+print("\nNumber of months: ", number_months)
+
+#print(total_cost * portion_down_payment)

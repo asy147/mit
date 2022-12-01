@@ -1,0 +1,37 @@
+
+SCRABBLE_LETTER_VALUES = {
+    'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': \
+8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': \
+1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
+}
+def getpts(word,n):
+    word = word.lower()
+    points = {}
+    for letter in word:
+        points[letter] = SCRABBLE_LETTER_VALUES[letter]
+    check = 7*len(word) - 3*(n-len(word))
+    print("check = ", check)
+    if check <= 1:
+        return 1
+    else:
+        letter_sum = 0
+        for letter in word:
+            letter_sum += points[letter]
+        print("letter sum = ",letter_sum)
+        return letter_sum * check
+
+#print("\"\"","total points",getpts("",7))
+#print("it n=7","total points",getpts("it",7))
+
+def upd_hand(hand, word):
+    new_hand = hand.copy
+    print(type(new_hand))
+    for letter in word:
+        print(letter)
+        if letter in hand:
+#            new_hand.pop(aletter)
+            pass
+    return new_hand
+
+
+print(upd_hand({'b': 2, 'd': 3, 'c': 2, 'e': 4},"abd"))

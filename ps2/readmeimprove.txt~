@@ -1,0 +1,3 @@
+when user tries * give the most likely letters in frequency, use dict
+
+py hangman.py
